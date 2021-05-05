@@ -2,6 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Onboarding } from './src/screens/Authentication';
 import { LoadAssets } from './src/components';
+import { ThemeProvider } from '@shopify/restyle';
+import { theme } from './src/components';
 
 const AuthenticationStack = createStackNavigator();
 const AuthenticationNavigator = () => (
@@ -18,8 +20,10 @@ const fonts = {
 
 export default function App() {
   return (
-    <LoadAssets {...{ fonts }}>
-      <AuthenticationNavigator />
-    </LoadAssets>
+    <ThemeProvider {...{ theme }}>
+      <LoadAssets {...{ fonts }}>
+        <AuthenticationNavigator />
+      </LoadAssets>
+    </ThemeProvider>
   );
 }

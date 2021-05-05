@@ -5,6 +5,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import theme from './Theme';
 
 interface PaginationDotProps {
   index: number;
@@ -39,7 +40,7 @@ const PaginationDot = ({ index, x }: PaginationDotProps) => {
     <Animated.View
       style={[
         {
-          backgroundColor: '#2cb9b0',
+          backgroundColor: theme.colors.primary,
           width: 8,
           height: 8,
           borderRadius: 4,

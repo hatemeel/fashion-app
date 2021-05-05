@@ -1,1 +1,1 @@
-export { randomKey } from './utils';
+export * from './utils';

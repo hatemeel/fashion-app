@@ -1,11 +1,14 @@
 import React, { useRef } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
   interpolateColor,
   useAnimatedStyle,
+  withSpring,
 } from 'react-native-reanimated';
+import PaginationDot from '../../../components/PaginationDot';
+import { randomKey } from '../../../shared';
 import Slide, { SLIDE_HEIGHT } from './Slide';
 import Subslide from './Subslide';
 
@@ -26,9 +29,17 @@ const styles = StyleSheet.create({
   },
   footerContent: {
     flex: 1,
-    flexDirection: 'row',
     backgroundColor: 'white',
     borderTopLeftRadius: BORDER_RADIUS,
+  },
+  pagination: {
+    position: 'absolute',
+    zIndex: 1,
+    width,
+    height: BORDER_RADIUS,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -126,31 +137,40 @@ const Onboarding = () => {
           ]}
         />
 
-        <Animated.View
-          style={[
-            styles.footerContent,
-            {
-              width: width * slides.length,
-            },
-            subSlideAnimatedStyle,
-          ]}
-        >
-          {slides.map(({ subtitle, description }, index) => (
-            <Subslide
-              key={index}
-              onPress={() => {
-                if (scrollRef.current) {
-                  scrollRef.current.scrollTo({
-                    x: width * (index + 1),
-                    animated: true,
-                  });
-                }
-              }}
-              {...{ subtitle, description }}
-              last={index === slides.length - 1}
-            />
-          ))}
-        </Animated.View>
+        <View style={styles.footerContent}>
+          <View style={styles.pagination}>
+            {slides.map((_, index) => (
+              <PaginationDot key={randomKey()} {...{ index, x }} />
+            ))}
+          </View>
+
+          <Animated.View
+            style={[
+              {
+                flex: 1,
+                flexDirection: 'row',
+                width: width * slides.length,
+              },
+              subSlideAnimatedStyle,
+            ]}
+          >
+            {slides.map(({ subtitle, description }, index) => (
+              <Subslide
+                key={index}
+                onPress={() => {
+                  if (scrollRef.current) {
+                    scrollRef.current.scrollTo({
+                      x: width * (index + 1),
+                      animated: true,
+                    });
+                  }
+                }}
+                {...{ subtitle, description }}
+                last={index === slides.length - 1}
+              />
+            ))}
+          </Animated.View>
+        </View>
       </View>
     </View>
   );

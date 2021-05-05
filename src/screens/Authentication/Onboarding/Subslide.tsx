@@ -14,11 +14,14 @@ const styles = StyleSheet.create({
     color: '#0c0d34',
   },
   description: {
+    width: 280,
     fontFamily: 'sf-regular',
     fontSize: 16,
     lineHeight: 24,
     color: '#0c0d34',
+    marginTop: 10,
     marginBottom: 40,
+    textAlign: 'center',
   },
 });
 

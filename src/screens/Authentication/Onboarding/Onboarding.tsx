@@ -6,9 +6,9 @@ import Animated, {
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import { theme } from '../../../components';
-import PaginationDot from '../../../components/PaginationDot';
-import { randomKey, Routes, StackNavigationProps } from '../../../shared';
+import { theme } from 'src/components';
+import PaginationDot from 'src/components/PaginationDot';
+import { randomKey, Routes, StackNavigationProps } from 'src/shared';
 import Slide, { SLIDE_HEIGHT } from './Slide';
 import Subslide from './Subslide';
 

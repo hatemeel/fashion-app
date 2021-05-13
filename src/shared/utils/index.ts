@@ -1,4 +1,4 @@
-export const randomKey = () => Math.random().toString(32).substr(-2);
+export const randomKey = () => Math.random().toString(32).substring(2);
 
 export const rgba = (hex: string, alpha = 1): string => {
   let r = '0',

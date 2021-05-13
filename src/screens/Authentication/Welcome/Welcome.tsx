@@ -1,8 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Box, Button, Text } from '../../../components';
+import { Box, Button, Text } from 'src/components';
+import { StackNavigationProps, Routes } from 'src/shared';
 
-const Welcome = () => {
+const Welcome = ({
+  navigation,
+}: StackNavigationProps<Routes, 'Onboarding'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box
@@ -36,9 +38,14 @@ const Welcome = () => {
             Login to your account below or signup for an amazing experience
           </Text>
 
-          <Button variant="primary" title="Have an account? Login" />
-          <Button variant="default" title="Join us, it's Free" />
-          <Button variant="transparent" title="Forgot password?" />
+          <Button
+            variant="primary"
+            onPress={() => navigation.navigate('Login')}
+          >
+            Have an account? Login
+          </Button>
+          <Button variant="default">Join us, it's Free</Button>
+          <Button variant="transparent">Forgot password?</Button>
         </Box>
       </Box>
     </Box>

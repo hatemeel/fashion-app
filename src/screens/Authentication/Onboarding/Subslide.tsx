@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from '../../../components';
+import { Button, Text } from 'src/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,11 +35,9 @@ const Subslide = ({ subtitle, description, last, onPress }: SubslideProps) => {
       <Text variant="body" style={styles.description}>
         {description}
       </Text>
-      <Button
-        title={last ? "Let's get started" : 'Next'}
-        variant={last ? 'primary' : 'default'}
-        {...{ onPress }}
-      />
+      <Button variant={last ? 'primary' : 'default'} {...{ onPress }}>
+        {last ? "Let's get started" : 'Next'}
+      </Button>
     </View>
   );
 };

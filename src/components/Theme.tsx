@@ -1,9 +1,9 @@
 import { createBox, createText, createTheme } from '@shopify/restyle';
-import { rgba } from '../shared';
+import { rgba } from 'src/shared';
 
 const palette = {
   primary: '#2cb9b0',
-  title: '#0c0d34',
+  secondary: '#0c0d34',
   text: rgba('#0c0d34', 0.7),
   grey: rgba('#0c0d34', 0.05),
   'slide.grey': '#f4f0ef',
@@ -15,12 +15,14 @@ const theme = createTheme({
     ...palette,
   },
   spacing: {
+    none: 0,
     s: 8,
     m: 16,
     l: 24,
     xl: 40,
   },
   borderRadii: {
+    none: 0,
     s: 4,
     m: 10,
     l: 25,
@@ -37,13 +39,13 @@ const theme = createTheme({
     title1: {
       fontSize: 28,
       fontFamily: 'sf-semibold',
-      color: 'title',
+      color: 'secondary',
     },
     title2: {
       fontSize: 24,
       lineHeight: 30,
       fontFamily: 'sf-semibold',
-      color: 'title',
+      color: 'secondary',
     },
     body: {
       fontSize: 16,

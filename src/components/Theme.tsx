@@ -4,8 +4,11 @@ import { rgba } from 'src/shared';
 const palette = {
   primary: '#2cb9b0',
   secondary: '#0c0d34',
+  danger: '#FF0058',
   text: rgba('#0c0d34', 0.7),
-  grey: rgba('#0c0d34', 0.05),
+  grey: rgba('#0c0d34', 0.5),
+  darkGrey: '#8A8D90',
+  light: rgba('#0c0d34', 0.05),
   'slide.grey': '#f4f0ef',
   white: 'white',
 };

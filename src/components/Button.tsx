@@ -32,7 +32,7 @@ const Button = ({ children, variant, onPress }: ButtonProps) => {
       case 'primary':
         return theme.colors.primary;
       default:
-        return theme.colors.grey;
+        return theme.colors.light;
     }
   })();
 

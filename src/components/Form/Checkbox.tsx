@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RectButton } from 'react-native-gesture-handler';
 import Icon from '../Icon';
 import { Box, Text } from '../Theme';
 
 interface CheckboxProps {
   label: string;
-  checked?: boolean;
+  value: boolean;
+  onChange: (value: boolean) => void;
 }
 
-const Checkbox = ({ label, checked: checkedByDefault }: CheckboxProps) => {
-  const [checked, setChecked] = useState(checkedByDefault);
-
-  const handlePress = () => setChecked((prevState) => !prevState);
+const Checkbox = ({ label, value, onChange }: CheckboxProps) => {
+  const handlePress = () => onChange(!value);
 
   return (
     <RectButton underlayColor="transparent" onPress={handlePress}>
@@ -22,10 +21,10 @@ const Checkbox = ({ label, checked: checkedByDefault }: CheckboxProps) => {
           borderRadius="s"
           alignItems="center"
           justifyContent="center"
-          backgroundColor={checked ? 'primary' : 'light'}
+          backgroundColor={value ? 'primary' : 'light'}
           marginRight="s"
         >
-          {checked && <Icon name="check" size={12} color="white" />}
+          {value && <Icon name="check" size={12} color="white" />}
         </Box>
 
         <Text variant="button">{label}</Text>

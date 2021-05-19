@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   TextInput as RNTextInput,
@@ -8,62 +8,28 @@ import theme, { Box } from '../Theme';
 import Icon, { IconName } from '../Icon';
 import { rgba } from 'src/shared';
 
-interface TextInputProps {
+interface TextInputProps extends RNTextInputProps {
   type: 'text' | 'email' | 'password';
-  placeholder?: string;
   icon?: IconName;
-  validator?: (input: string) => boolean;
+  error?: string;
+  touched?: boolean;
 }
-
-const Valid = true;
-const Invalid = false;
-const Pristine = null;
-type InputState = typeof Valid | typeof Invalid | typeof Pristine;
 
 const ICON_SIZE = theme.borderRadii.m * 2;
 
-const TextInput = ({ type, icon, placeholder, validator }: TextInputProps) => {
-  const [input, setInput] = useState<string>('');
-  const [dirty, setDirty] = useState<boolean>(false);
-  const [state, setState] = useState<InputState>(Pristine);
-
-  const color =
-    state === Pristine ? 'darkGrey' : state === Valid ? 'primary' : 'danger';
-
-  const handleChangeText = (text: string) => {
-    setInput(text);
-    !dirty && setDirty(true);
-    state !== Pristine && handleBlur();
-  };
-
-  const handleBlur = () => {
-    if (validator && dirty) {
-      switch (validator(input)) {
-        case Valid:
-          setState(Valid);
-          break;
-
-        case Invalid:
-          setState(Invalid);
-          break;
-      }
-    }
-  };
-
-  const typeProps = ((): RNTextInputProps => {
-    switch (type) {
-      case 'email':
-        return {
-          keyboardType: 'email-address',
-        };
-      case 'password':
-        return {
-          secureTextEntry: true,
-        };
-      default:
-        return {};
-    }
-  })();
+const TextInput = ({
+  type,
+  icon,
+  error,
+  touched,
+  ...props
+}: TextInputProps) => {
+  const color = !touched ? 'darkGrey' : !error ? 'primary' : 'danger';
+  const placeholderTextColor = !touched
+    ? rgba('#151624', 0.5)
+    : !error
+    ? rgba('#151624', 0.5)
+    : theme.colors.danger;
 
   return (
     <Box
@@ -75,21 +41,19 @@ const TextInput = ({ type, icon, placeholder, validator }: TextInputProps) => {
       borderColor={color}
       paddingHorizontal="s"
     >
-      <Box paddingHorizontal="s">
-        <Icon name={icon} size={16} color={theme.colors[color]} />
-      </Box>
+      {icon && (
+        <Box paddingHorizontal="s">
+          <Icon name={icon} size={16} color={theme.colors[color]} />
+        </Box>
+      )}
 
       <RNTextInput
         style={{ flex: 1 }}
         underlineColorAndroid="transparent"
-        placeholderTextColor={rgba('#151624', 0.5)}
-        value={input}
-        onChangeText={handleChangeText}
-        onBlur={handleBlur}
-        {...{ placeholder, ...typeProps }}
+        {...{ placeholderTextColor, ...props }}
       />
 
-      {(state === Valid || state === Invalid) && (
+      {touched && (
         <Box
           borderRadius="m"
           width={ICON_SIZE}
@@ -99,11 +63,7 @@ const TextInput = ({ type, icon, placeholder, validator }: TextInputProps) => {
           justifyContent="center"
           marginHorizontal="s"
         >
-          <Icon
-            name={state === Valid ? 'check' : 'x'}
-            size={10}
-            color="white"
-          />
+          <Icon name={!error ? 'check' : 'x'} size={10} color="white" />
         </Box>
       )}
     </Box>

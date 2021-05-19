@@ -6,16 +6,14 @@ import Animated, {
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import { theme } from 'src/components';
-import PaginationDot from 'src/components/PaginationDot';
+import { PaginationDot, Theme, createStyles } from 'src/components';
 import { randomKey, Routes, StackNavigationProps } from 'src/shared';
 import Slide, { SLIDE_HEIGHT } from './Slide';
 import Subslide from './Subslide';
 
-const BORDER_RADIUS = 75;
 const { width } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+const useStyles = createStyles((theme: Theme) => ({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-});
+}));
 
 const slides = [
   {
@@ -77,6 +75,8 @@ const slides = [
 const Onboarding = ({
   navigation,
 }: StackNavigationProps<Routes, 'Onboarding'>) => {
+  const styles = useStyles();
+
   const scrollRef = useRef<any>(null);
   const x = useSharedValue(0);
 

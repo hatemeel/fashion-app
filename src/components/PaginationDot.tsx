@@ -5,7 +5,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import theme from './Theme';
+import { useTheme } from './Theme';
 
 interface PaginationDotProps {
   index: number;
@@ -15,6 +15,8 @@ interface PaginationDotProps {
 const { width } = Dimensions.get('window');
 
 const PaginationDot = ({ index, x }: PaginationDotProps) => {
+  const theme = useTheme();
+
   const dotAnimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(

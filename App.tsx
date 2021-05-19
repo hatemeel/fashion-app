@@ -2,8 +2,8 @@ import React from 'react';
 import { AuthenticationNavigator } from 'src/screens/Authentication';
 import { LoadAssets } from 'src/components';
 import { ThemeProvider } from '@shopify/restyle';
-import { theme } from 'src/components';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { theme } from 'src/components/Theme';
 
 const fonts = {
   'sf-bold': require('./assets/fonts/SFProDisplay-Bold.ttf'),

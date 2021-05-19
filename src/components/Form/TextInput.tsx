@@ -4,18 +4,15 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from 'react-native';
-import theme, { Box } from '../Theme';
+import { Box, useTheme } from '../Theme';
 import Icon, { IconName } from '../Icon';
 import { rgba } from 'src/shared';
-
 interface TextInputProps extends RNTextInputProps {
   type: 'text' | 'email' | 'password';
   icon?: IconName;
   error?: string;
   touched?: boolean;
 }
-
-const ICON_SIZE = theme.borderRadii.m * 2;
 
 const TextInput = ({
   type,
@@ -24,6 +21,9 @@ const TextInput = ({
   touched,
   ...props
 }: TextInputProps) => {
+  const theme = useTheme();
+  const ICON_SIZE = theme.borderRadii.m * 2;
+
   const color = !touched ? 'darkGrey' : !error ? 'primary' : 'danger';
   const placeholderTextColor = !touched
     ? rgba('#151624', 0.5)
@@ -61,7 +61,7 @@ const TextInput = ({
           backgroundColor={color}
           alignItems="center"
           justifyContent="center"
-          marginHorizontal="s"
+          marginLeft="s"
         >
           <Icon name={!error ? 'check' : 'x'} size={10} color="white" />
         </Box>

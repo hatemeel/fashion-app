@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import theme, { Text } from './Theme';
+import { Text, useTheme } from './Theme';
 
 interface ButtonProps {
   children: string | ReactNode;
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
 });
 
 const Button = ({ children, variant, onPress }: ButtonProps) => {
+  const theme = useTheme();
+
   const backgroundColor = (() => {
     switch (variant) {
       case 'transparent':

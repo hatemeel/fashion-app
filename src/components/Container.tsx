@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Dimensions, Image, StatusBar, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import theme, { Box } from './Theme';
+import { Box } from './Theme';
 
 interface ContainerProps {
   children: ReactNode;

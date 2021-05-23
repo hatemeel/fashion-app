@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   StyleSheet,
   TextInput as RNTextInput,
@@ -14,60 +14,56 @@ interface TextInputProps extends RNTextInputProps {
   touched?: boolean;
 }
 
-const TextInput = ({
-  type,
-  icon,
-  error,
-  touched,
-  ...props
-}: TextInputProps) => {
-  const theme = useTheme();
-  const ICON_SIZE = theme.borderRadii.m * 2;
+const TextInput = forwardRef<RNTextInput, TextInputProps>(
+  ({ type, icon, error, touched, ...props }, ref) => {
+    const theme = useTheme();
+    const ICON_SIZE = theme.borderRadii.m * 2;
 
-  const color = !touched ? 'darkGrey' : !error ? 'primary' : 'danger';
-  const placeholderTextColor = !touched
-    ? rgba('#151624', 0.5)
-    : !error
-    ? rgba('#151624', 0.5)
-    : theme.colors.danger;
+    const color = !touched ? 'darkGrey' : !error ? 'primary' : 'danger';
+    const placeholderTextColor = !touched
+      ? rgba('#151624', 0.5)
+      : !error
+      ? rgba('#151624', 0.5)
+      : theme.colors.danger;
 
-  return (
-    <Box
-      flexDirection="row"
-      height={48}
-      alignItems="center"
-      borderRadius="s"
-      borderWidth={StyleSheet.hairlineWidth}
-      borderColor={color}
-      paddingHorizontal="s"
-    >
-      {icon && (
-        <Box paddingHorizontal="s">
-          <Icon name={icon} size={16} color={theme.colors[color]} />
-        </Box>
-      )}
+    return (
+      <Box
+        flexDirection="row"
+        height={48}
+        alignItems="center"
+        borderRadius="s"
+        borderWidth={StyleSheet.hairlineWidth}
+        borderColor={color}
+        paddingHorizontal="s"
+      >
+        {icon && (
+          <Box paddingHorizontal="s">
+            <Icon name={icon} size={16} color={theme.colors[color]} />
+          </Box>
+        )}
 
-      <RNTextInput
-        style={{ flex: 1 }}
-        underlineColorAndroid="transparent"
-        {...{ placeholderTextColor, ...props }}
-      />
+        <RNTextInput
+          style={{ flex: 1, height: 48 }}
+          underlineColorAndroid="transparent"
+          {...{ ref, placeholderTextColor, ...props }}
+        />
 
-      {touched && (
-        <Box
-          borderRadius="m"
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          backgroundColor={color}
-          alignItems="center"
-          justifyContent="center"
-          marginLeft="s"
-        >
-          <Icon name={!error ? 'check' : 'x'} size={10} color="white" />
-        </Box>
-      )}
-    </Box>
-  );
-};
+        {touched && (
+          <Box
+            borderRadius="m"
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+            backgroundColor={color}
+            alignItems="center"
+            justifyContent="center"
+            marginLeft="s"
+          >
+            <Icon name={!error ? 'check' : 'x'} size={10} color="white" />
+          </Box>
+        )}
+      </Box>
+    );
+  }
+);
 
 export default TextInput;

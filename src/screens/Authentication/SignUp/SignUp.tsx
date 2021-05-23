@@ -1,61 +1,49 @@
 import React, { useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  Text,
-  TextInput,
-} from 'src/components';
+import { Box, Button, Container, Text, TextInput } from 'src/components';
 import { Footer } from '../components';
 import { StackNavigationProps, Routes } from 'src/shared';
-import { LoginInitialValuesProps } from 'src/shared/models/login.model';
+import { SignUpInitialValuesProps } from 'src/shared/models/signUp.model';
 
-const loginInitialValues: LoginInitialValuesProps = {
+const signUpInitialValues: SignUpInitialValuesProps = {
   email: '',
   password: '',
-  remember: true,
+  confirmPassword: '',
 };
 
-const loginValidationSchema = Yup.object().shape({
+const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
     .min(8, 'Too short')
     .max(50, 'Too long')
     .required('Required'),
-  remember: Yup.boolean(),
+  confirmPassword: Yup.string()
+    .equals([Yup.ref('password')], "Passwords don't match")
+    .required('Required'),
 });
 
-const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
-  const handleLogin = (values: LoginInitialValuesProps) => {
+const SignUp = ({ navigation }: StackNavigationProps<Routes, 'SignUp'>) => {
+  const handleSignUp = (values: SignUpInitialValuesProps) => {
     console.log(values);
   };
 
-  const {
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-    setFieldValue,
-  } = useFormik({
-    initialValues: loginInitialValues,
-    validationSchema: loginValidationSchema,
-    onSubmit: handleLogin,
-  });
+  const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
+    useFormik({
+      initialValues: signUpInitialValues,
+      validationSchema: signUpValidationSchema,
+      onSubmit: handleSignUp,
+    });
 
   const passwordInput = useRef<RNTextInput>(null);
+  const confirmPasswordInput = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
-      title="Don't have an account?"
-      action="Sign Up here"
-      onPress={() => navigation.navigate('SignUp')}
+      title="Already have an account?"
+      action="Login here"
+      onPress={() => navigation.navigate('Login')}
     />
   );
 
@@ -63,12 +51,12 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
     <Container {...{ footer }}>
       <Box padding="xl">
         <Text variant="title1" textAlign="center" marginBottom="l">
-          Welcome back
+          Create account
         </Text>
 
         <Box maxWidth={255} alignSelf="center" marginBottom="xl">
           <Text variant="body" color="grey" textAlign="center">
-            Use your credentials below and login to your account
+            Let’s us know what your name, email, and your password
           </Text>
         </Box>
 
@@ -103,35 +91,32 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
             touched={touched.password}
             secureTextEntry={true}
             autoCompleteType="password"
+            returnKeyType="next"
+            onSubmitEditing={() => confirmPasswordInput.current?.focus()}
+          />
+        </Box>
+
+        <Box marginBottom="m">
+          <TextInput
+            ref={confirmPasswordInput}
+            type="password"
+            icon="lock"
+            placeholder="Confirm password"
+            onChangeText={handleChange('confirmPassword')}
+            onBlur={handleBlur('confirmPassword')}
+            value={values.confirmPassword}
+            error={errors.confirmPassword}
+            touched={touched.confirmPassword}
+            secureTextEntry={true}
+            autoCompleteType="password"
             returnKeyType="done"
             onSubmitEditing={() => handleSubmit()}
           />
         </Box>
 
-        <Box
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-          marginBottom="m"
-        >
-          <Checkbox
-            label="Remember me"
-            value={values.remember}
-            onChange={(value) => setFieldValue('remember', value)}
-          />
-
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('ForgotPassword')}
-          >
-            <Text variant="button" color="primary">
-              Forgot password
-            </Text>
-          </TouchableWithoutFeedback>
-        </Box>
-
         <Box alignItems="center" marginTop="m">
           <Button variant="primary" onPress={handleSubmit}>
-            Log into your account
+            Create your account
           </Button>
         </Box>
       </Box>
@@ -139,4 +124,4 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
   );
 };
 
-export default Login;
+export default SignUp;

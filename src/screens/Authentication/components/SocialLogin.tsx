@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Svg, { Path } from 'react-native-svg';
-import { Box } from './Theme';
+import { Box } from 'src/components';
 
 interface IconBoxProps {
   children: ReactNode;

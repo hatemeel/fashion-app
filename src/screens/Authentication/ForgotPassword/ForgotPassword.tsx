@@ -21,6 +21,8 @@ const ForgotPassword = ({
 }: StackNavigationProps<Routes, 'ForgotPassword'>) => {
   const handleResetPassword = (values: ForgotPasswordInitialValuesProps) => {
     console.log(values);
+
+    navigation.navigate('PasswordChanged');
   };
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =

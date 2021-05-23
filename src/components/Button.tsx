@@ -4,7 +4,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { Text, useTheme } from './Theme';
 
 interface ButtonProps {
-  children: string | ReactNode;
+  children?: string | ReactNode;
   variant?: 'default' | 'primary' | 'transparent';
   onPress?: () => void;
 }

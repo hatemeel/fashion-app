@@ -44,8 +44,18 @@ const Welcome = ({
           >
             Have an account? Login
           </Button>
-          <Button variant="default">Join us, it's Free</Button>
-          <Button variant="transparent">Forgot password?</Button>
+          <Button
+            variant="default"
+            onPress={() => navigation.navigate('SignUp')}
+          >
+            Join us, it's Free
+          </Button>
+          <Button
+            variant="transparent"
+            onPress={() => navigation.navigate('ForgotPassword')}
+          >
+            Forgot password?
+          </Button>
         </Box>
       </Box>
     </Box>

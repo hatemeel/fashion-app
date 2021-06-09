@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text, TextInput } from 'src/components';
 import { Footer } from '../components';
-import { StackNavigationProps, Routes } from 'src/shared';
+import { StackNavigationProps, AuthenticationRoutes } from 'src/shared';
 import { SignUpInitialValuesProps } from 'src/shared/models/signUp.model';
 
 const signUpInitialValues: SignUpInitialValuesProps = {
@@ -24,7 +24,9 @@ const signUpValidationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const SignUp = ({ navigation }: StackNavigationProps<Routes, 'SignUp'>) => {
+const SignUp = ({
+  navigation,
+}: StackNavigationProps<AuthenticationRoutes, 'SignUp'>) => {
   const handleSignUp = (values: SignUpInitialValuesProps) => {
     console.log(values);
   };

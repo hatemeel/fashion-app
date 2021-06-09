@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
+import { CompositeNavigationProp } from '@react-navigation/native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -12,8 +13,16 @@ import {
   TextInput,
 } from 'src/components';
 import { Footer } from '../components';
-import { StackNavigationProps, Routes } from 'src/shared';
+import { AuthenticationRoutes, AppRoutes } from 'src/shared';
 import { LoginInitialValuesProps } from 'src/shared/models/login.model';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+interface LoginProps {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<AuthenticationRoutes, 'Login'>,
+    StackNavigationProp<AppRoutes, 'Authentication'>
+  >;
+}
 
 const loginInitialValues: LoginInitialValuesProps = {
   email: '',
@@ -30,9 +39,11 @@ const loginValidationSchema = Yup.object().shape({
   remember: Yup.boolean(),
 });
 
-const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
+const Login = ({ navigation }: LoginProps) => {
   const handleLogin = (values: LoginInitialValuesProps) => {
     console.log(values);
+
+    navigation.replace('Home');
   };
 
   const {

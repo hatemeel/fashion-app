@@ -7,7 +7,11 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import { PaginationDot, Theme, createStyles } from 'src/components';
-import { randomKey, Routes, StackNavigationProps } from 'src/shared';
+import {
+  randomKey,
+  AuthenticationRoutes,
+  StackNavigationProps,
+} from 'src/shared';
 import Slide, { SLIDE_HEIGHT } from './Slide';
 import Subslide from './Subslide';
 
@@ -74,7 +78,7 @@ const slides = [
 
 const Onboarding = ({
   navigation,
-}: StackNavigationProps<Routes, 'Onboarding'>) => {
+}: StackNavigationProps<AuthenticationRoutes, 'Onboarding'>) => {
   const styles = useStyles();
 
   const scrollRef = useRef<any>(null);

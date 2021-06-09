@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Button, Text, Link } from 'src/components';
-import { StackNavigationProps, Routes } from 'src/shared';
+import { StackNavigationProps, AuthenticationRoutes } from 'src/shared';
 
 const Welcome = ({
   navigation,
-}: StackNavigationProps<Routes, 'Onboarding'>) => {
+}: StackNavigationProps<AuthenticationRoutes, 'Welcome'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box

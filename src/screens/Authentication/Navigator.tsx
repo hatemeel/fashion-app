@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Routes } from 'src/shared';
+import { AuthenticationRoutes } from 'src/shared';
 import Onboarding from './Onboarding';
 import Welcome from './Welcome';
 import Login from './Login';
@@ -8,7 +8,7 @@ import { SignUp } from './SignUp';
 import { ForgotPassword } from './ForgotPassword';
 import { PasswordChanged } from './PasswordChanged';
 
-const AuthenticationStack = createStackNavigator<Routes>();
+const AuthenticationStack = createStackNavigator<AuthenticationRoutes>();
 
 const AuthenticationNavigator = () => (
   <AuthenticationStack.Navigator headerMode="none">

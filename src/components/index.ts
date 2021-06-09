@@ -5,4 +5,6 @@ export { default as PaginationDot } from './PaginationDot';
 export { default as Button } from './Button';
 export { default as Icon, IconName } from './Icon';
 export { default as RoundedIcon } from './RoundedIcon';
+export { default as RoundedIconButton } from './RoundedIconButton';
+export { default as Link } from './Link';
 export { TextInput, Checkbox } from './Form';

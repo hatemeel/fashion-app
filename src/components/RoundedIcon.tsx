@@ -2,9 +2,10 @@ import React from 'react';
 import Icon, { IconName } from './Icon';
 import { Theme, Box, Text } from './Theme';
 
-interface RoundedIconProps {
+export interface RoundedIconProps {
   name: IconName;
   size: number;
+  iconSize?: number;
   color: keyof Theme['colors'];
   backgroundColor: keyof Theme['colors'];
 }
@@ -12,10 +13,11 @@ interface RoundedIconProps {
 const RoundedIcon = ({
   name,
   size,
+  iconSize,
   color,
   backgroundColor,
 }: RoundedIconProps) => {
-  const iconSize = size * 0.65;
+  iconSize = iconSize || size * 0.65;
 
   return (
     <Box
@@ -27,7 +29,7 @@ const RoundedIcon = ({
       style={{ borderRadius: size / 2 }}
     >
       <Text style={{ width: iconSize, height: iconSize }} {...{ color }}>
-        <Icon size={iconSize} style={{ textAlign: 'center' }} {...{ name }} />
+        <Icon size={iconSize} {...{ name }} />
       </Text>
     </Box>
   );

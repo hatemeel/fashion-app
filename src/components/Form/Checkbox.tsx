@@ -1,7 +1,8 @@
 import React from 'react';
-import { RectButton } from 'react-native-gesture-handler';
+import { BorderlessButton } from 'react-native-gesture-handler';
 import Icon from '../Icon';
-import { Box, Text } from '../Theme';
+import Link from '../Link';
+import { Box } from '../Theme';
 
 interface CheckboxProps {
   label: string;
@@ -13,8 +14,8 @@ const Checkbox = ({ label, value, onChange }: CheckboxProps) => {
   const handlePress = () => onChange(!value);
 
   return (
-    <RectButton underlayColor="transparent" onPress={handlePress}>
-      <Box flexDirection="row" alignItems="center">
+    <Box flexDirection="row" alignItems="center">
+      <BorderlessButton activeOpacity={1} onPress={handlePress}>
         <Box
           width={20}
           height={20}
@@ -26,10 +27,12 @@ const Checkbox = ({ label, value, onChange }: CheckboxProps) => {
         >
           {value && <Icon name="check" size={12} color="white" />}
         </Box>
+      </BorderlessButton>
 
-        <Text variant="button">{label}</Text>
-      </Box>
-    </RectButton>
+      <Link onPress={handlePress} color="secondary">
+        {label}
+      </Link>
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Text } from 'src/components';
+import { Box, Button, Text, Link } from 'src/components';
 import { StackNavigationProps, Routes } from 'src/shared';
 
 const Welcome = ({
@@ -50,12 +50,12 @@ const Welcome = ({
           >
             Join us, it's Free
           </Button>
-          <Button
-            variant="transparent"
+          <Link
             onPress={() => navigation.navigate('ForgotPassword')}
+            color="secondary"
           >
             Forgot password?
-          </Button>
+          </Link>
         </Box>
       </Box>
     </Box>

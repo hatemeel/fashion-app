@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -8,6 +7,7 @@ import {
   Button,
   Checkbox,
   Container,
+  Link,
   Text,
   TextInput,
 } from 'src/components';
@@ -120,13 +120,9 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
             onChange={(value) => setFieldValue('remember', value)}
           />
 
-          <TouchableWithoutFeedback
-            onPress={() => navigation.replace('ForgotPassword')}
-          >
-            <Text variant="button" color="primary">
-              Forgot password
-            </Text>
-          </TouchableWithoutFeedback>
+          <Link onPress={() => navigation.navigate('ForgotPassword')}>
+            Forgot password
+          </Link>
         </Box>
 
         <Box alignItems="center" marginTop="m">

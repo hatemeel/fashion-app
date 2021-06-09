@@ -5,7 +5,6 @@ import { Box, Button, Container, Text, TextInput } from 'src/components';
 import { Footer } from '../components';
 import { StackNavigationProps, Routes } from 'src/shared';
 import { ForgotPasswordInitialValuesProps } from 'src/shared/models/forgotPassword.model';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Linking } from 'react-native';
 
 const forgotPasswordInitialValues: ForgotPasswordInitialValuesProps = {
@@ -22,7 +21,7 @@ const ForgotPassword = ({
   const handleResetPassword = (values: ForgotPasswordInitialValuesProps) => {
     console.log(values);
 
-    navigation.navigate('PasswordChanged');
+    navigation.replace('PasswordChanged');
   };
 
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
@@ -34,9 +33,9 @@ const ForgotPassword = ({
 
   const footer = (
     <Footer
-      title="Don't have an account?"
-      action="Sign Up here"
-      onPress={() => navigation.replace('SignUp')}
+      title="Don’t work?"
+      action="Try another way"
+      onPress={() => Linking.openURL('mailto:help@support.com')}
     />
   );
 
@@ -76,14 +75,6 @@ const ForgotPassword = ({
             Reset password
           </Button>
         </Box>
-
-        <TouchableWithoutFeedback
-          onPress={() => Linking.openURL('mailto:help@support.com')}
-        >
-          <Text variant="button" textAlign="center" marginTop="m">
-            Don’t work? <Text color="primary">Try another way</Text>
-          </Text>
-        </TouchableWithoutFeedback>
       </Box>
     </Container>
   );

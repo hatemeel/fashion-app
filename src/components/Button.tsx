@@ -5,7 +5,7 @@ import { Text, useTheme } from './Theme';
 
 interface ButtonProps {
   children?: string | ReactNode;
-  variant?: 'default' | 'primary' | 'transparent';
+  variant?: 'default' | 'primary';
   onPress?: () => void;
 }
 
@@ -29,8 +29,6 @@ const Button = ({ children, variant, onPress }: ButtonProps) => {
 
   const backgroundColor = (() => {
     switch (variant) {
-      case 'transparent':
-        return 'transparent';
       case 'primary':
         return theme.colors.primary;
       default:

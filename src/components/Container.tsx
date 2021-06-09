@@ -9,6 +9,7 @@ import { Box } from './Theme';
 interface ContainerProps {
   children: ReactNode;
   footer: JSX.Element;
+  pattern: 0 | 1 | 2;
 }
 
 const { width, height: windowHeight } = Dimensions.get('window');
@@ -16,8 +17,16 @@ const aspectRatio = 250 / 375;
 const height = width * aspectRatio;
 const partHeight = height * 0.66;
 
-const Container = ({ children, footer }: ContainerProps) => {
+const bgPatterns = [
+  require('../../assets/patterns/bg-pattern-1.png'),
+  require('../../assets/patterns/bg-pattern-2.png'),
+  require('../../assets/patterns/bg-pattern-3.png'),
+];
+
+const Container = ({ children, footer, pattern }: ContainerProps) => {
   const insets = useSafeAreaInsets();
+
+  const bgPattern = bgPatterns[pattern];
 
   return (
     <>
@@ -38,7 +47,7 @@ const Container = ({ children, footer }: ContainerProps) => {
               height={partHeight}
             >
               <Image
-                source={require('../../assets/patterns/bg-pattern-1.png')}
+                source={bgPattern}
                 style={{
                   width,
                   height,
@@ -49,7 +58,7 @@ const Container = ({ children, footer }: ContainerProps) => {
 
           <Box flex={1} overflow="hidden">
             <Image
-              source={require('../../assets/patterns/bg-pattern-1.png')}
+              source={bgPattern}
               style={{
                 ...StyleSheet.absoluteFillObject,
                 width,

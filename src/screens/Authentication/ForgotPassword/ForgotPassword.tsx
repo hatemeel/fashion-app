@@ -36,12 +36,12 @@ const ForgotPassword = ({
     <Footer
       title="Don't have an account?"
       action="Sign Up here"
-      onPress={() => navigation.navigate('SignUp')}
+      onPress={() => navigation.replace('SignUp')}
     />
   );
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={2} {...{ footer }}>
       <Box padding="xl" flex={1} justifyContent="center">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Forgot password?

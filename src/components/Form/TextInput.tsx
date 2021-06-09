@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Box, useTheme } from '../Theme';
 import Icon, { IconName } from '../Icon';
+import RoundedIcon from '../RoundedIcon';
 import { rgba } from 'src/shared';
 interface TextInputProps extends RNTextInputProps {
   type: 'text' | 'email' | 'password';
@@ -49,16 +50,13 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
         />
 
         {touched && (
-          <Box
-            borderRadius="m"
-            width={ICON_SIZE}
-            height={ICON_SIZE}
-            backgroundColor={color}
-            alignItems="center"
-            justifyContent="center"
-            marginLeft="s"
-          >
-            <Icon name={!error ? 'check' : 'x'} size={10} color="white" />
+          <Box marginLeft="s">
+            <RoundedIcon
+              name={!error ? 'check' : 'x'}
+              backgroundColor={color}
+              color="white"
+              size={ICON_SIZE}
+            />
           </Box>
         )}
       </Box>

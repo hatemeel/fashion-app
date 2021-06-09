@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Box, Text } from 'src/components';
 import SocialLogin from './SocialLogin';

@@ -55,12 +55,12 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
     <Footer
       title="Don't have an account?"
       action="Sign Up here"
-      onPress={() => navigation.navigate('SignUp')}
+      onPress={() => navigation.replace('SignUp')}
     />
   );
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={0} {...{ footer }}>
       <Box padding="xl">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Welcome back
@@ -121,7 +121,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, 'Login'>) => {
           />
 
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('ForgotPassword')}
+            onPress={() => navigation.replace('ForgotPassword')}
           >
             <Text variant="button" color="primary">
               Forgot password

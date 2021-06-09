@@ -4,4 +4,5 @@ export { default as Container } from './Container';
 export { default as PaginationDot } from './PaginationDot';
 export { default as Button } from './Button';
 export { default as Icon, IconName } from './Icon';
+export { default as RoundedIcon } from './RoundedIcon';
 export { TextInput, Checkbox } from './Form';

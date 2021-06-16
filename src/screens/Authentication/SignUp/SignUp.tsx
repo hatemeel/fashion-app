@@ -3,9 +3,9 @@ import { TextInput as RNTextInput } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text, TextInput } from 'src/components';
+import { SignUpInitialValuesProps } from 'src/shared';
 import { Footer } from '../components';
-import { StackNavigationProps, AuthenticationRoutes } from 'src/shared';
-import { SignUpInitialValuesProps } from 'src/shared/models/signUp.model';
+import { AuthNavigationProps } from '../Navigator';
 
 const signUpInitialValues: SignUpInitialValuesProps = {
   email: '',
@@ -24,9 +24,7 @@ const signUpValidationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const SignUp = ({
-  navigation,
-}: StackNavigationProps<AuthenticationRoutes, 'SignUp'>) => {
+const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const handleSignUp = (values: SignUpInitialValuesProps) => {
     console.log(values);
   };
@@ -51,7 +49,7 @@ const SignUp = ({
 
   return (
     <Container pattern={1} {...{ footer }}>
-      <Box padding="xl">
+      <Box padding="xl" flex={1} justifyContent="center">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Create account
         </Text>

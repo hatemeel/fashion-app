@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
-import { CompositeNavigationProp } from '@react-navigation/native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -12,17 +11,9 @@ import {
   Text,
   TextInput,
 } from 'src/components';
+import { LoginInitialValuesProps } from 'src/shared';
 import { Footer } from '../components';
-import { AuthenticationRoutes, AppRoutes } from 'src/shared';
-import { LoginInitialValuesProps } from 'src/shared/models/login.model';
-import { StackNavigationProp } from '@react-navigation/stack';
-
-interface LoginProps {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<AuthenticationRoutes, 'Login'>,
-    StackNavigationProp<AppRoutes, 'Authentication'>
-  >;
-}
+import { AuthNavigationProps } from '../Navigator';
 
 const loginInitialValues: LoginInitialValuesProps = {
   email: '',
@@ -39,7 +30,7 @@ const loginValidationSchema = Yup.object().shape({
   remember: Yup.boolean(),
 });
 
-const Login = ({ navigation }: LoginProps) => {
+const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
   const handleLogin = (values: LoginInitialValuesProps) => {
     console.log(values);
 
@@ -72,7 +63,7 @@ const Login = ({ navigation }: LoginProps) => {
 
   return (
     <Container pattern={0} {...{ footer }}>
-      <Box padding="xl">
+      <Box padding="xl" flex={1} justifyContent="center">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Welcome back
         </Text>

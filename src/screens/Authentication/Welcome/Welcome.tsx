@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Button, Text, Link } from 'src/components';
-import { StackNavigationProps, AuthenticationRoutes } from 'src/shared';
+import { AuthNavigationProps } from '../Navigator';
 
-const Welcome = ({
-  navigation,
-}: StackNavigationProps<AuthenticationRoutes, 'Welcome'>) => {
+const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box

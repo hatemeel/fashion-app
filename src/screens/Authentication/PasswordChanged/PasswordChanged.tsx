@@ -7,11 +7,11 @@ import {
   RoundedIconButton,
   Text,
 } from 'src/components';
-import { StackNavigationProps, AuthenticationRoutes } from 'src/shared';
+import { AuthNavigationProps } from '../Navigator';
 
 const PasswordChanged = ({
   navigation,
-}: StackNavigationProps<AuthenticationRoutes, 'PasswordChanged'>) => {
+}: AuthNavigationProps<'PasswordChanged'>) => {
   const footer = (
     <Box paddingTop="xl" paddingBottom="l" alignItems="center">
       <RoundedIconButton

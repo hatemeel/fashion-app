@@ -1,12 +1,26 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { AuthenticationRoutes } from 'src/shared';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
+import { AppRoutes, AuthenticationRoutes } from 'src/shared';
 import Onboarding from './Onboarding';
 import Welcome from './Welcome';
 import Login from './Login';
 import { SignUp } from './SignUp';
 import { ForgotPassword } from './ForgotPassword';
 import { PasswordChanged } from './PasswordChanged';
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
+
+export interface AuthNavigationProps<
+  RouteName extends keyof AuthenticationRoutes
+> {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<AuthenticationRoutes, RouteName>,
+    StackNavigationProp<AppRoutes, 'Home'>
+  >;
+  route: RouteProp<AuthenticationRoutes, RouteName>;
+}
 
 const AuthenticationStack = createStackNavigator<AuthenticationRoutes>();
 

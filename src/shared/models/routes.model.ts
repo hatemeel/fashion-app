@@ -14,4 +14,8 @@ export type AuthenticationRoutes = {
 
 export type HomeRoutes = {
   OutfitIdeas: undefined;
+  FavoriteOutfits: undefined;
+  EditProfile: undefined;
+  TransactionHistory: undefined;
+  NotificationsSettings: undefined;
 };

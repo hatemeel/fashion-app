@@ -2,10 +2,10 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text, TextInput } from 'src/components';
+import { ForgotPasswordInitialValuesProps } from 'src/shared';
 import { Footer } from '../components';
-import { StackNavigationProps, AuthenticationRoutes } from 'src/shared';
-import { ForgotPasswordInitialValuesProps } from 'src/shared/models/forgotPassword.model';
 import { Linking } from 'react-native';
+import { AuthNavigationProps } from '../Navigator';
 
 const forgotPasswordInitialValues: ForgotPasswordInitialValuesProps = {
   email: '',
@@ -17,7 +17,7 @@ const forgotPasswordValidationSchema = Yup.object().shape({
 
 const ForgotPassword = ({
   navigation,
-}: StackNavigationProps<AuthenticationRoutes, 'ForgotPassword'>) => {
+}: AuthNavigationProps<'ForgotPassword'>) => {
   const handleResetPassword = (values: ForgotPasswordInitialValuesProps) => {
     console.log(values);
 

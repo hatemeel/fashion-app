@@ -1,12 +1,26 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { OutfitIdeas } from './OutfitIdeas';
-import { HomeRoutes } from 'src/shared';
+import { AppRoutes, HomeRoutes } from 'src/shared';
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { DrawerContent, DRAWER_WIDTH } from './components';
+
+export interface HomeNavigationProps<RouteName extends keyof HomeRoutes> {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<HomeRoutes, RouteName>,
+    StackNavigationProp<AppRoutes, 'Authentication'>
+  >;
+  route: RouteProp<HomeRoutes, RouteName>;
+}
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
 
 const HomeNavigator = () => (
-  <Drawer.Navigator>
+  <Drawer.Navigator
+    drawerContent={DrawerContent}
+    drawerStyle={{ width: DRAWER_WIDTH }}
+  >
     <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />
   </Drawer.Navigator>
 );

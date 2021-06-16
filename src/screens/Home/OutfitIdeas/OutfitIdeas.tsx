@@ -1,17 +1,8 @@
-import { CompositeNavigationProp } from '@react-navigation/core';
-import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { Box, Button } from 'src/components';
-import { AppRoutes, HomeRoutes } from 'src/shared';
+import { HomeNavigationProps } from '../Navigator';
 
-interface OutfitIdeasProps {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<HomeRoutes, 'OutfitIdeas'>,
-    StackNavigationProp<AppRoutes, 'Home'>
-  >;
-}
-
-const OutfitIdeas = ({ navigation }: OutfitIdeasProps) => {
+const OutfitIdeas = ({ navigation }: HomeNavigationProps<'OutfitIdeas'>) => {
   return (
     <Box paddingTop="xl" marginTop="xl" alignItems="center">
       <Button onPress={() => navigation.replace('Authentication')}>Exit</Button>

@@ -26,6 +26,7 @@ export const theme = createTheme({
   },
   spacing: {
     none: 0,
+    xs: 4,
     s: 8,
     m: 16,
     l: 24,
@@ -33,6 +34,7 @@ export const theme = createTheme({
   },
   borderRadii: {
     none: 0,
+    xs: 2,
     s: 4,
     m: 10,
     l: 25,
@@ -67,6 +69,12 @@ export const theme = createTheme({
       fontSize: 15,
       fontFamily: 'sf-medium',
       color: 'text',
+    },
+    header: {
+      fontSize: 12,
+      lineHeight: 24,
+      fontFamily: 'sf-semibold',
+      color: 'secondary',
     },
   },
 });

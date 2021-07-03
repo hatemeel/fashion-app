@@ -27,7 +27,7 @@ const DrawerItem = ({
 
   return (
     <BorderlessButton
-      style={{ marginTop: isFirst ? 24 : 0 }}
+      style={{ marginTop: isFirst ? 0 : 24 }}
       onPress={pressHandler}
     >
       <Box flexDirection="row" alignItems="center">

@@ -4,7 +4,7 @@ import { OutfitIdeas } from './OutfitIdeas';
 import { AppRoutes, HomeRoutes } from 'src/shared';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { DrawerContent, DRAWER_WIDTH } from './components';
+import { DrawerContent, DRAWER_WIDTH } from './DrawerContent';
 
 export interface HomeNavigationProps<RouteName extends keyof HomeRoutes> {
   navigation: CompositeNavigationProp<
@@ -18,7 +18,7 @@ const Drawer = createDrawerNavigator<HomeRoutes>();
 
 const HomeNavigator = () => (
   <Drawer.Navigator
-    drawerContent={DrawerContent}
+    drawerContent={(props) => <DrawerContent {...props} />}
     drawerStyle={{ width: DRAWER_WIDTH }}
   >
     <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />

@@ -8,3 +8,4 @@ export { default as RoundedIcon } from './RoundedIcon';
 export { default as RoundedIconButton } from './RoundedIconButton';
 export { default as Link } from './Link';
 export { TextInput, Checkbox } from './Form';
+export { default as Header } from './Header';
